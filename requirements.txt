@@ -1,0 +1,6 @@
+discord.py
+mercadopago
+fastapi
+uvicorn
+flask
+pymysql

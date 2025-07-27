@@ -1,0 +1,16 @@
+{
+    "discord_token": "TOKEN Discord",
+    "mercadopago_token": "TOKEN MercadoPagoAPI",
+    "webhook_url": "https://dominio/webhook",
+    "mysql": {
+        "host": "localhost",
+        "user": "seu_usuario",
+        "password": "sua_senha",
+        "database": "nome_do_banco"
+    },
+    "WEB_LOGIN": {
+        "username": "admin",
+        "password": "1234"
+    }
+}
+  
