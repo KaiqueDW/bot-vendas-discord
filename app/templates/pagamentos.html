@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>📄 Registros de Pagamentos</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID do Pagamento</th>
+      <th>Discord ID</th>
+      <th>Produto</th>
+      <th>Valor</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in registros %}
+    <tr>
+      <td>{{ p["PagamentoID"] }}</td>
+      <td>{{ p["DiscordID"] }}</td>
+      <td>{{ p["Produto"] }}</td>
+      <td>R$ {{ "%.2f"|format(p["Valor"]) }}</td>
+      <td>{{ p["Status"] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

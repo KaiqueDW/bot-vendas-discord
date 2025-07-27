@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h2>Estatísticas</h2>
+<div class="grid">
+  <div class="card">📅 Vendas do Dia: <b>{{ total_dia }}</b><br>💰 R$ {{ valor_dia }}</div>
+  <div class="card">📈 Vendas da Semana: <b>{{ total_semana }}</b><br>💰 R$ {{ valor_semana }}</div>
+  <div class="card">📆 Vendas do Mês: <b>{{ total_mes }}</b><br>💰 R$ {{ valor_mes }}</div>
+</div>
+
+<h3>Outros dados</h3>
+<ul>
+  <li>💳 Forma de pagamento mais usada: <b>{{ forma_mais_usada }}</b></li>
+  <li>🚫 Forma de pagamento menos usada: <b>{{ forma_menos_usada }}</b></li>
+  <li>🔥 Produto mais vendido: <b>{{ produto_mais_vendido }}</b></li>
+  <li>❄️ Produto menos vendido: <b>{{ produto_menos_vendido }}</b></li>
+</ul>
+<h3>Gráfico de Vendas por Produto (Linha)</h3>
+<canvas id="graficoProdutos" width="800" height="300"></canvas>
+
+<script>
+const ctxProdutos = document.getElementById('graficoProdutos').getContext('2d');
+const graficoProdutos = new Chart(ctxProdutos, {
+    type: 'line',
+    data: {
+        labels: {{ dias | safe }},
+        datasets: [
+            {% for produto, dados in series.items() %}
+            {
+                label: "{{ produto }}",
+                data: {{ dados }},
+                fill: false,
+                borderColor: "{{ ['red', 'blue', 'green', 'purple', 'orange', 'brown', 'black'][loop.index0 % 7] }}",
+                tension: 0.2
+            },
+            {% endfor %}
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'Vendas por Produto (últimos 7 dias)' }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: { precision: 0 }
+            }
+        }
+    }
+});
+</script>
+
+{% endblock %}

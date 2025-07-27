@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title or "Painel de Vendas" }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Painel de Vendas</h1>
+    <nav>
+      <a href="/">🏠 Dashboard</a>
+      <a href="/transacoes">📋 Transações</a>
+      <a href="/pagamentos">💳 Ver Links</a>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>📋 Transações Registradas</h2>
+
+<form method="get">
+  <input type="text" name="q" placeholder="Buscar por usuário ou ID" value="{{ busca }}">
+  <button type="submit">🔍 Buscar</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Pagamento</th>
+      <th>Discord ID</th>
+      <th>Usuário</th>
+      <th>Produto</th>
+      <th>Valor</th>
+      <th>Forma de Pagamento</th>
+      <th>Data e Hora</th>
+      <th>Código</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in vendas %}
+    <tr>
+      <td>{{ t["id"] }}</td>
+      <td>{{ t["PagamentoID"] }}</td>
+      <td>{{ t["DiscordID"] }}</td>
+      <td>{{ t["Usuario"] }}</td>
+      <td>{{ t["Produto"] }}</td>
+      <td>R$ {{ "%.2f"|format(t["Valor"]) }}</td>
+      <td>{{ t["FormaPagamento"] }}</td>
+      <td>{{ t["DataHora"] }}</td>
+      <td>{{ t["Codigo"] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
